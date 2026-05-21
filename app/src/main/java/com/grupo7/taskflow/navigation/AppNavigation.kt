@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.grupo7.taskflow.screen.SplashScreen
 import com.grupo7.taskflow.screen.TaskDetailScreen
 import com.grupo7.taskflow.screen.TaskListScreen
 import com.grupo7.taskflow.viewmodel.TareaViewModel
@@ -14,7 +15,13 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val viewModel: TareaViewModel = viewModel()
 
-    NavHost(navController = navController, startDestination = "lista_tareas") {
+    // Cambiamos el destino inicial a "splash"
+    NavHost(navController = navController, startDestination = "splash") {
+
+        // Agregamos la ruta de la pantalla de carga
+        composable("splash") {
+            SplashScreen(navController = navController)
+        }
 
         composable("lista_tareas") {
             TaskListScreen(
